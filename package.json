@@ -1,6 +1,6 @@
 {
   "name": "sync-block-duration-lib",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Wraps sync functions to record elapsed wall-clock time with performance.now.",
   "type": "module",
   "main": "src/index.js",
