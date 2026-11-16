@@ -37,3 +37,10 @@ The trade-off is that this only measures synchronous execution. If the wrapped f
 - If the measured function throws, the exception propagates unchanged and no duration is returned. The two clock reads still happen, so the injected clock is not left half-consumed.
 - `options.now` must be a function returning a number. Passing anything else throws a `TypeError` before the measured function runs.
 - The default clock uses `performance.now()` from `node:perf_hooks`, which is monotonic and unaffected by system clock adjustments.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
